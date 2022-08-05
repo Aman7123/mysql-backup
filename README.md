@@ -25,3 +25,19 @@ This project is a personal extension of an amazing piece of software [Databacker
 
 ### An example of the Discord alert
 ![Discord alert example showing hyperlinks](.github/resources/discord-example.png)
+
+## Decrypt backup
+```bash
+openssl \
+    enc \
+    -d \
+    -aes256 \
+    -nosalt \
+    -base64 \
+    -A \
+    -md sha256 \
+    -d \
+    -k <SP_ENCRYPTION_KEY> \
+    -in <encrypted-file> \
+    -out db_backup.tgz
+```
