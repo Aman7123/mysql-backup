@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  databack:
+    build: .
+    container_name: mysql-backup-custom
+    image: mysql-backup-custom:latest
+    restart: always
+    mem_limit: 200m
+    environment:
+      # For base image
+      DB_SERVER: 10.0.0.1
+      DB_PORT: 3306
+      DB_USER: DBUsername
+      DB_PASS: DBPassword
+      DB_DUMP_TARGET: /tmp/backup-data
+      DB_DUMP_BY_SCHEMA: "true"
+      SINGLE_DATABASE: "false"
+      MYSQLDUMP_OPTS: "--routines"
+      DB_DUMP_DEBUG: "true"
+      DB_DUMP_FREQ: 60
+      # For custom functions
+      SP_ENABLE_TRANSFER: "true"
+      SP_ENCRYPTION_KEY: CHANGEME
+      SP_T_SH_OUTPUT: /tmp/sp-output/transfer_sh-output.log
+      SP_GH_PK: ghp_abcd1234
+      SP_GH_USER: Aman7123
+      SP_GH_REPO: db-backups
+      SP_DISCORD_USER: <@176355202687959051>
+      SP_DISCORD_WEBHOOK: https://discord.com/api/webhooks/983173147295642460/abc-de-fghi-jklmnopqrstuvwxyz123456
+      # Debug saver
+      DB_NAMES_EXCLUDE: information_schema performance_schema sys mysql
+    volumes:
+    - "./mysql-backups:/tmp/backup-data" # Local storage for extras, size is managed by a post-script
+    - "./outputs:/tmp/sp-output" # Logging output
+    - "./post-backup:/scripts.d/post-backup" # Shared volume for functions
