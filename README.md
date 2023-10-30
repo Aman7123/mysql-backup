@@ -1,32 +1,32 @@
 # Custom MySQL Backup
 
 ## Description
-This project is a personal extension of an amazing piece of software [Databacker's MySQL Backup](https://github.com/databacker/mysql-backup). This project only adds additional libraries into the contain which allow for popular cli resources like [curl](https://curl.se/) and [jq](https://stedolan.github.io/jq/). The addition of these libraries is to extend [Pre- and Post- Processing](https://github.com/databacker/mysql-backup#backup-pre-and-post-processing) included in the original project.
+This project serves as a personal extension of the remarkable [Databacker's MySQL Backup](https://github.com/databacker/mysql-backup) software. It primarily incorporates additional libraries into the container, enabling the use of popular CLI resources like [curl](https://curl.se/) and [jq](https://stedolan.github.io/jq/). The inclusion of these libraries aims to enhance the [Pre- and Post- Processing](https://github.com/databacker/mysql-backup#backup-pre-and-post-processing) features provided in the original project.
 
 ## Running with Docker-Compose
-**TOP NOTE**: Ensure you run `sudo chmod -R 777` on the `post-backup` folder.
+**IMPORTANT NOTE**: Before running, execute `sudo chmod -R 777` on the `pos-backup` folder to set the necessary permissions.
 
-### Be sure to fill in these variables:
+### Ensure to populate these variables:
 
 | Variable | Description |
 |---|---|
-| DB_SERVER | The host of the MySQL DB. |
-| DB_USER | The username of DB credentials. |
-| DB_PASS | The password of the DB user account. |
-| DB_DUMP_FREQ | Frequency in minutes. |
-| SP_ENABLE_ENCRYPTION | To enable the upload process encryption. |
-| SP_ENCRYPTION_KEY | The encryption key to use. |
-| SP_ENABLE_TRANSFER | Toggle save to transfer.sh |
-| SP_GH_PK | Use a Github Personal Access Token to enable upload to Github. |
-| SP_GH_USER | The username of the Access Token when using Github upload. |
-| SP_GH_REPO | The repo to use when creating backup releases. |
-| SP_DISCORD_USER | Enables a direct ping when using Discord alering |
-| SP_DISCORD_WEBHOOK | Can alert via Discord the URLs of the backup if connected. |
+| DB_SERVER | The host of the MySQL database. |
+| DB_USER | The username for database access. |
+| DB_PASS | The password for the database user account. |
+| DB_DUMP_FREQ | Backup frequency in minutes. |
+| SP_ENABLE_ENCRYPTION | Toggle to enable encryption during the upload process. |
+| SP_ENCRYPTION_KEY | The encryption key to be used. |
+| SP_ENABLE_TRANSFER | Toggle to save to transfer.sh. |
+| SP_GH_PK | Utilize a GitHub Personal Access Token to enable upload to GitHub. |
+| SP_GH_USER | The username associated with the Access Token for GitHub uploads. |
+| SP_GH_REPO | The repository to use when creating backup releases. |
+| SP_DISCORD_USER | Toggle to enable direct pings when using Discord alerts. |
+| SP_DISCORD_WEBHOOK | Provides the capability to alert via Discord with backup URLs, if configured. |
 
-### An example of the Discord alert
-![Discord alert example showing hyperlinks](.github/resources/discord-example.png)
+### Discord Alert Example
+![Example of Discord alert showing hyperlinks](.github/resources/discord-example.png)
 
-## Decrypt backup
+## Decrypting Backups
 ```bash
 openssl \
     enc \
